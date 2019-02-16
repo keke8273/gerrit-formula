@@ -80,6 +80,7 @@ gerrit_config:
     - template: jinja
     - user: {{ settings.user }}
     - group: {{ settings.group }}
+    - mode: 664
     - makedirs: true
     - defaults:
         settings: {{ settings|json }}
@@ -92,6 +93,7 @@ secure_config:
     - template: jinja
     - user: {{ settings.user }}
     - group: {{ settings.group }}
+    - mode: 664
     - makedirs: true
     - defaults:
         secure: {{ settings.secure|json }}
