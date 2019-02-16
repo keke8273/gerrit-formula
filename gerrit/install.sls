@@ -118,8 +118,7 @@ gerrit_init:
 {%- else %}
         java -jar {{ settings.base_directory }}/{{ gerrit_war_file }} init --batch -d {{ settings.base_directory }}/{{ settings.site_directory }}
 {%- endif %}
-    - user: {{ settings.user }}
-    - group: {{ settings.group }}
+    - runas: {{ settings.user }}
     - cwd: {{ settings.base_directory }}
     - unless: test -d {{ settings.base_directory }}/{{ settings.site_directory }}/bin
 {% if settings.secondary_index %}
@@ -127,8 +126,7 @@ secondary_index:
   cmd.wait:
     - name: |
         java -jar {{ settings.base_directory }}/{{ gerrit_war_file }} reindex -d {{ settings.base_directory }}/{{ settings.site_directory }}
-    - user: {{ settings.user }}
-    - group: {{ settings.group }}
+    - runas: {{ settings.user }}
     - cwd: {{ settings.base_directory }}
     - watch:
       - cmd: gerrit_init
