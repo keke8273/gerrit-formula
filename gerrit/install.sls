@@ -5,7 +5,7 @@
 {% set gerrit_war_file = "gerrit-" ~ settings.package.version ~ ".war" -%}
 
 install_jre:
-  pkg.installed:
+  file.exist:
     - name: {{ settings.jre }}
 
 install_git:
