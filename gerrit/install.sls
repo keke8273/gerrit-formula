@@ -98,6 +98,16 @@ secure_config:
     - defaults:
         secure: {{ settings.secure|json }}
 
+replication_config:
+  file.managed:
+    - name: {{ settings.base_directory }}/{{ settings.site_directory }}/etc/replication.config
+    - source: salt://gerrit/files/replication.config
+    - template: jinja
+    - user: {{ settings.user }}
+    - group: {{ settings.group }}
+    - mode: 664
+    - makedirs: true
+
 {# On FreeBSD setting the site path is handled by the rc.d script,
    which allows us to skip writing to /etc
    (which shouldn't be used for installed applications). #}
