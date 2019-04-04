@@ -1,7 +1,12 @@
 [Unit]
 Description={{service_name}}
+After=network.target
 
 [Service]
+Type=forking
 ExecStart={{directory}}/bin/gerrit.sh start
 ExecStop={{directory}}/bin/gerrit.sh stop
 User={{user}}
+
+[Install]
+WantedBy=multi-user.target
